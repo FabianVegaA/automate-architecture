@@ -5,16 +5,16 @@ from re import search
 
 def plot_code(project, import_files):
     with Diagram(project, direction="TB"):
-        for path, imports in import_files.items():
+        with Cluster(project):
+            for path, imports in import_files.items():
 
-            
-            filtered_imports = [
-                tuple(filter(lambda i: i is not None, import_)) for import_ in imports
-            ]
-            if filtered_imports:
-                node = folder(path)
-                for i in filtered_imports:
-                    Python(str(i[0])) >> node
+                filtered_imports = [
+                    tuple(filter(lambda i: i is not None, import_)) for import_ in imports
+                ]
+                if filtered_imports:
+                    node = folder(path)
+                    for i in filtered_imports:
+                        Python(str(i[0])) >> node
 
 
 def folder(path: str):
@@ -23,4 +23,4 @@ def folder(path: str):
         return Python(d[0])
     else:
         with Cluster(d[0]):
-            return folder("".join(d[1:]))
+            return folder("/".join(d[1:]))
