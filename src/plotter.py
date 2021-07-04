@@ -9,7 +9,8 @@ def plot_code(project, import_files):
             for path, imports in import_files.items():
 
                 filtered_imports = [
-                    tuple(filter(lambda i: i is not None, import_)) for import_ in imports
+                    tuple(filter(lambda i: i is not None, import_))
+                    for import_ in imports
                 ]
                 if filtered_imports:
                     node = folder(path)
