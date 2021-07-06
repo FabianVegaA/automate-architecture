@@ -1,18 +1,21 @@
 import os
 import pprint
 
-from src.extractor import extract_imports, extract_path_from
+from src.extractor import Extractor
 from src.plotter import Plotter
 
 
 def main():
     # Project path
-    project = "src"
+    project = "../sigmaF"
+    ignores = ["venv", "__pycache__", ".vscode"]
 
     # Get files and its importions
     path_imports = dict()
-    for path in extract_path_from(project):
-        path_imports[path] = [imports for _, imports in extract_imports(path)]
+
+    extractor = Extractor(project, ignores)
+    for path in extractor.extract_path_from():
+        path_imports[path] = extractor.modules(extractor.extract_imports(path))
 
     # Make the architecture plot
     plotter = Plotter(name="_".join(project.split("/")))
