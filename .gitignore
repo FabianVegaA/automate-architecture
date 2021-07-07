@@ -1,6 +1,10 @@
 # Images
 *.png 
 *.jpg
+*.svg
+
+# Vscode
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

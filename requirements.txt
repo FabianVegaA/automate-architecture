@@ -1,2 +1,4 @@
 diagrams==0.20.0
 black==21.6b0
+PyYAML==5.4.1
+bs4==0.0.1
