@@ -7,7 +7,7 @@ from src.plotter import Plotter
 
 def main():
     # Project path
-    project = "../sigmaF"
+    project = "."
     ignores = ["venv", "__pycache__", ".vscode"]
 
     # Get files and its importions
@@ -18,7 +18,7 @@ def main():
         path_imports[path] = extractor.modules(extractor.extract_imports(path))
 
     # Make the architecture plot
-    plotter = Plotter(name="_".join(project.split("/")))
+    plotter = Plotter(name="_".join(project.split("/")), outformat="png")
     plotter.plot_code(project, path_imports)
 
 
