@@ -1,6 +1,8 @@
 from diagrams import Diagram, Cluster
 from diagrams.programming.language import Python
 from diagrams.generic.storage import Storage
+from diagrams.generic.database import SQL
+
 from re import search
 import pprint
 
@@ -77,7 +79,11 @@ class Plotter:
             if importation in self.imports.keys():
                 self.imports.get(importation) >> node
             else:
-                self.imports[importation] = Storage(importation)
+                if "sql" in importation.lower():
+                    self.imports[importation] = SQL(importation)
+
+                else:
+                    self.imports[importation] = Storage(importation)
                 self.imports.get(importation) >> node
 
     def _folder(self, path: str):
